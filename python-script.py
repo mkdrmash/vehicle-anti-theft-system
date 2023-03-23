@@ -22,6 +22,22 @@ longitude = 0
 
 app = Flask(__name__)
 
+def check_vehicle_movement():
+    #detect vehicle movement using raspberry pi motion detecter module
+    return True
+
+def get_vehicle_gps_location():
+    #get vehicle gps location using raspberry pi GPS module
+    return [2.709658418882217, 54.336351294797055]
+
+def enable_vehicle_alert_sound():
+    #this function will enable vehicle alert sound
+    return
+
+def enable_vehicle_alert_sound():
+    #this function will disable vehicle alert sound
+    return
+
 @app.route("/sms", methods=['GET', 'POST'])
 def sms_reply():
     number = request.form['From']
@@ -60,26 +76,8 @@ def sms_reply():
         resp.message('Vehicle Stopped!!!\n Alert Sound Activated\n Vehicle GPS Location:-\n Latitude: {}\n Longitude {}'.format(latitude, longitude))
         return str(resp)
     
-
-
 if __name__ == "__main__":
     app.run(debug=True)
-
-def check_vehicle_movement():
-    #detect vehicle movement using raspberry pi motion detecter module
-    return True
-
-def get_vehicle_gps_location():
-    #get vehicle gps location using raspberry pi GPS module
-    return [2.709658418882217, 54.336351294797055]
-
-def enable_vehicle_alert_sound():
-    #this function will enable vehicle alert sound
-    return
-
-def enable_vehicle_alert_sound():
-    #this function will disable vehicle alert sound
-    return
 
 while True:
     vehicle_movement_detected = check_vehicle_movement()
@@ -102,3 +100,4 @@ while True:
         )
 
         print(message.sid)
+        
